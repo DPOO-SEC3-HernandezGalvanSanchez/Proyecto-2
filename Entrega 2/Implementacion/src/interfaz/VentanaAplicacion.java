@@ -141,24 +141,34 @@ public class VentanaAplicacion extends JFrame implements ActionListener
 	
 	
 	//GETTERS y SETTERS
+	public String getLoginEnUso()
+	{
+		return loginEnUso;
+	}
+	
+	public Participante getUsuarioEnUso()
+	{
+		return usuarioEnUso;
+	}
+	
 	public ArchivoUsuarios getArchivoUsuarios()
 	{
 		return archivoUsuarios;
 	}
 	
-	public CoordinadorProyecto getArchivoProyectos()
+	public CoordinadorProyecto getCoordinadorProyecto()
 	{
 		return coordinadorProyecto;
 	}
 	
 	public void setLoginEnUso(String login)
 	{
-		this.loginEnUso = login;
+		loginEnUso = login;
 	}
 	
 	public void setUsuarioEnUso(Participante usuario)
 	{
-		this.usuarioEnUso = usuario;
+		usuarioEnUso = usuario;
 	}
 	
 	public void enableBotonContinuar(boolean bool)

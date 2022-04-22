@@ -38,11 +38,11 @@ public class PanelLogin1 extends JPanel implements ActionListener
 		add(mensaje);
 		
 		cuadroTexto = new JTextField();
-		cuadroTexto.setBounds(275, 72, 100, 20);
+		cuadroTexto.setBounds(275, 69, 100, 23);
 		add(cuadroTexto);
 		
-		botonEntrar = new JButton("entrar");
-		botonEntrar.setBounds(220, 105, 100, 20);
+		botonEntrar = new JButton("Entrar");
+		botonEntrar.setBounds(220, 107, 100, 25);
 		botonEntrar.addActionListener(this);
 		add(botonEntrar);
 		
