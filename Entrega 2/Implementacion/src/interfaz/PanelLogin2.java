@@ -57,7 +57,6 @@ public class PanelLogin2 extends JPanel implements ActionListener
 		
 		textLabel = new JLabel("");
 		textLabel.setBounds(40, 170, 600, 23);
-		textLabel.setForeground(new Color(105, 105, 105));
 		this.add(textLabel);
 
 	}
@@ -65,8 +64,8 @@ public class PanelLogin2 extends JPanel implements ActionListener
 	
 	public void userNonExistent()
 	{
-		disableFields();
 		String texto = "Por favor, haga click en el boton 'Continuar'";
+		textLabel.setForeground(new Color(105, 105, 105));
 		textLabel.setText(texto);
 	}
 	
@@ -75,7 +74,7 @@ public class PanelLogin2 extends JPanel implements ActionListener
 	{
 		String texto = "El usuario ya se encuentra registrado"
 			    + " en el sistema. Por favor intente con otro";
-	
+		textLabel.setForeground(Color.RED);
 		textLabel.setText(texto);
 	}
 	
@@ -97,7 +96,8 @@ public class PanelLogin2 extends JPanel implements ActionListener
             
 			if (login.equals("") || nombre.equals(""))
 			{
-				String texto = "Por favor complete los campos";
+				String texto = "Por favor complete todos los campos";
+				textLabel.setForeground(Color.RED);
 				textLabel.setText(texto);
 			}
 			else

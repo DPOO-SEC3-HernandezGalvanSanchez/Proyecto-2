@@ -70,7 +70,6 @@ public class PanelEleccion1 extends JPanel implements ActionListener
 	        {
 	            String nombreProyecto = desplegable.getSelectedItem().toString();
 	            padre.setProyectoEnUso(nombreProyecto);    
-	            disableFields();
 	            String texto = "Por favor, haga click en el boton 'Continuar'";
 	    		textLabel.setText(texto);
 	        }

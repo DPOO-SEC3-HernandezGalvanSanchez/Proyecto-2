@@ -1,12 +1,17 @@
 package interfaz;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import consola.ArchivoUsuarios;
 import modelo.CoordinadorProyecto;
@@ -65,10 +70,19 @@ public class MenuEleccionProyecto extends Menu
 	
 	public void setProyectoEnUso(String nombre)
 	{
+		p1.disableFields();
 		p2.disableFields();
 		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
 		coordinadorProyecto.seleccionarProyecto(nombre);
 		ventana.enableBotonContinuar(true);
+	}
+	
+	
+	public void newProjectSettings(String nombre, String descripcion, int numTipos)
+	{
+		String fechaHoy = ventana.getFecha();
+		DialogCrearProyecto settings = new DialogCrearProyecto(nombre, descripcion, numTipos,
+															   fechaHoy, this);
 	}
 	
 	
@@ -79,6 +93,11 @@ public class MenuEleccionProyecto extends Menu
 		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();			
 		coordinadorProyecto.crearProyecto(nombre, descripcion, fechaInicio,
 										  fechaFin, tiposActividades, autor);
+		coordinadorProyecto.guardarArchivo();
+		p1.disableFields();
+		p2.disableFields();
+		p2.successfulSave();
+		ventana.enableBotonContinuar(true);
 	}
 	
 }

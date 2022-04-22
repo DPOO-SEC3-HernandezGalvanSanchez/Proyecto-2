@@ -2,6 +2,7 @@ package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,6 +77,7 @@ public class VentanaAplicacion extends JFrame implements ActionListener
 		
 		botonAtras = new JButton("Atras");
 		botonAtras.addActionListener(this);
+		botonAtras.setPreferredSize(new Dimension(80, 20));
 		botonAtras.setEnabled(false);
 		panelInferior.add(botonAtras, BorderLayout.WEST);		
 	}
@@ -109,7 +111,7 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             
             if (menuID.equals(1))
             {
-            	System.out.println("SIGUIENTE 1");
+            	System.out.println("SIGUIENTE 1"); //TEMPORAL
             	botonAtras.setEnabled(true);
             	menuActual.setVisible(false);
             	menuActual = new MenuEleccionProyecto(this);
@@ -118,7 +120,9 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             
             else if (menuID.equals(2))
             {
-            	System.out.println("SIGUIENTE 2");
+            	System.out.println("SIGUIENTE 2"); //TEMPORAL
+            	System.out.println("\nSe eligio el proyecto " + coordinadorProyecto.getNombreProyecto()); //TEMPORAL
+        		System.out.println("Descripcion: " + coordinadorProyecto.getDescripcionProyecto());       //TEMPORAL
             }
             
         }
@@ -141,6 +145,11 @@ public class VentanaAplicacion extends JFrame implements ActionListener
 	
 	
 	//GETTERS y SETTERS
+	public String getFecha()
+	{
+		return FECHA;
+	}
+	
 	public String getLoginEnUso()
 	{
 		return loginEnUso;

@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -17,7 +20,7 @@ public class PanelEleccion2 extends JPanel implements ActionListener
 	
 	private JTextField cuadroNombre;
 	private JTextField cuadroDescripcion;
-	private JTextField cuadroNumTipos;
+	private JComboBox<Integer> cuadroNumTipos;
 	private JButton botonCrear;
 	private JLabel textLabel;
 	
@@ -39,6 +42,7 @@ public class PanelEleccion2 extends JPanel implements ActionListener
 		add(mensajeNombre);
 		
 		cuadroNombre = new JTextField();
+		//cuadroNombre.setText("ProyectoPrueba3"); //TEMPORAL
 		cuadroNombre.setBounds(295, 59, 150, 23);
 		add(cuadroNombre);
 		
@@ -48,6 +52,7 @@ public class PanelEleccion2 extends JPanel implements ActionListener
 		add(mensajeDescripcion);
 		
 		cuadroDescripcion = new JTextField();
+		//cuadroDescripcion.setText("descripcionP3"); //TEMPORAL
 		cuadroDescripcion.setBounds(295, 94, 150, 23);
 		add(cuadroDescripcion);
 		
@@ -56,26 +61,20 @@ public class PanelEleccion2 extends JPanel implements ActionListener
 		mensajeNumTipos.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensajeNumTipos);
 		
-		cuadroNumTipos = new JTextField();
+		Integer[] opcionesTipos = {1,2,3,4,5};
+		cuadroNumTipos = new JComboBox<Integer>(opcionesTipos);
 		cuadroNumTipos.setBounds(295, 129, 150, 23);
 		add(cuadroNumTipos);
 		
 		botonCrear = new JButton("Crear");
-		botonCrear.setBounds(220, 172, 90, 25);
+		botonCrear.setBounds(220, 170, 90, 25);
 		botonCrear.addActionListener(this);
 		add(botonCrear);
 		
 		textLabel = new JLabel("");
-		textLabel.setBounds(40, 160, 600, 20);
-		textLabel.setForeground(new Color(105, 105, 105));
+		textLabel.setBounds(40, 205, 600, 20);
 		this.add(textLabel);
 
-	}
-	
-	
-	public void setTiposActividades(int numTipos)
-	{
-		
 	}
 	
 	
@@ -83,8 +82,16 @@ public class PanelEleccion2 extends JPanel implements ActionListener
 	{
 		cuadroNombre.setEditable(false);
 		cuadroDescripcion.setEditable(false);
-		cuadroNumTipos.setEditable(false);
+		cuadroNumTipos.setEnabled(false);
 		botonCrear.setEnabled(false);
+	}
+	
+	
+	public void successfulSave()
+	{
+		String texto = "Por favor, haga click en el boton 'Continuar'";
+		textLabel.setForeground(new Color(105, 105, 105));
+		textLabel.setText(texto);
 	}
 	
 
@@ -94,17 +101,17 @@ public class PanelEleccion2 extends JPanel implements ActionListener
         {
 			String nombre = cuadroNombre.getText();
 			String descripcion = cuadroDescripcion.getText();
-            int numTipos = Integer.parseInt(cuadroNumTipos.getText());
+            int numTipos = (int) cuadroNumTipos.getSelectedItem();
             
 			if (descripcion.equals("") || nombre.equals(""))
 			{
-				String texto = "Por favor complete los campos";
+				String texto = "Por favor complete todos los campos";
+				textLabel.setForeground(Color.RED);
 				textLabel.setText(texto);
 			}
 			else
 			{
-				setTiposActividades(numTipos);
-				System.out.println("FALTA CREARLO");
+				padre.newProjectSettings(nombre, descripcion, numTipos);
 			}
         }
     }

@@ -51,6 +51,7 @@ public class MenuLogin extends Menu
 		else
 		{
 			p1.userFound();
+			p1.disableFields();
 			p2.disableFields();
 			ventana.setLoginEnUso(loginEnUso);
 			ventana.setUsuarioEnUso(usuarioEnUso);
@@ -68,6 +69,7 @@ public class MenuLogin extends Menu
 		{
 			p2.userNonExistent();
 			p1.disableFields();
+			p2.disableFields();
 			usuarioEnUso = new Participante(login, nombre);
 			ventana.setUsuarioEnUso(usuarioEnUso);
 			ventana.setLoginEnUso(login);
