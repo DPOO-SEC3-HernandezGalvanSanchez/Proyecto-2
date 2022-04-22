@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+
+@SuppressWarnings("serial")
 public class PanelEleccion1 extends JPanel implements ActionListener
 {
 		private MenuEleccionProyecto padre;

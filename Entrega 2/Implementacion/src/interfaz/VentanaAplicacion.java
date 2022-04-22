@@ -14,13 +14,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 import consola.ArchivoUsuarios;
 import modelo.CoordinadorProyecto;
 import modelo.Participante;
 
 
+@SuppressWarnings("serial")
 public class VentanaAplicacion extends JFrame implements ActionListener
 {
 	private CoordinadorProyecto coordinadorProyecto = new CoordinadorProyecto();
@@ -78,7 +78,7 @@ public class VentanaAplicacion extends JFrame implements ActionListener
 		botonAtras = new JButton("Atras");
 		botonAtras.addActionListener(this);
 		botonAtras.setPreferredSize(new Dimension(80, 20));
-		botonAtras.setEnabled(false);
+		botonAtras.setVisible(false);
 		panelInferior.add(botonAtras, BorderLayout.WEST);		
 	}
 	
@@ -112,7 +112,7 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             if (menuID.equals(1))
             {
             	System.out.println("SIGUIENTE 1"); //TEMPORAL
-            	botonAtras.setEnabled(true);
+            	botonAtras.setVisible(true);
             	menuActual.setVisible(false);
             	menuActual = new MenuEleccionProyecto(this);
             	updateMenu();
@@ -121,10 +121,11 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             else if (menuID.equals(2))
             {
             	System.out.println("SIGUIENTE 2"); //TEMPORAL
-            	System.out.println("\nSe eligio el proyecto " + coordinadorProyecto.getNombreProyecto()); //TEMPORAL
-        		System.out.println("Descripcion: " + coordinadorProyecto.getDescripcionProyecto());       //TEMPORAL
-            }
-            
+            	botonContinuar.setVisible(false);
+            	menuActual.setVisible(false);
+            	menuActual = new MenuProyecto(this);
+            	updateMenu();
+            }            
         }
 		
 		else if (e.getSource()==botonAtras)
@@ -134,10 +135,20 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             if (menuID.equals(2))
             {
             	System.out.println("ATRAS 2");
-            	botonAtras.setEnabled(false);
+            	botonAtras.setVisible(false);
             	menuActual.setVisible(false);
             	menuActual = new MenuLogin(this);
             	updateMenu();
+            }
+            
+            if (menuID.equals(3))
+            {
+            	System.out.println("ATRAS 3");
+            	botonContinuar.setVisible(true);
+            	menuActual.setVisible(false);
+            	menuActual = new MenuEleccionProyecto(this);
+            	updateMenu();
+            	//POR REVISAR: coordinadorProyecto.refresh() ???
             }
             
         }
@@ -148,6 +159,11 @@ public class VentanaAplicacion extends JFrame implements ActionListener
 	public String getFecha()
 	{
 		return FECHA;
+	}
+	
+	public String getHora()
+	{
+		return HORA_ACTUAL;
 	}
 	
 	public String getLoginEnUso()

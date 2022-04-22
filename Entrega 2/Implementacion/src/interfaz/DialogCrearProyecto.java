@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class DialogCrearProyecto extends JDialog implements ActionListener
 {
 	private MenuEleccionProyecto padre;
@@ -42,7 +43,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener
 		mensajeFechaI.setFont(new Font("Bold", Font.PLAIN, 13));
 		settingsP.add(mensajeFechaI);
 		
-		cuadroFechaInicio = new JTextField("Ej: 01/01/2022");
+		cuadroFechaInicio = new JTextField();
 		cuadroFechaInicio.setText(fechaHoy);
 		cuadroFechaInicio.setBounds(220, 39, 150, 23);
 		settingsP.add(cuadroFechaInicio);
@@ -135,8 +136,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener
 			{
 				String texto = "Por favor complete todos los campos";
 				textLabel.setText(texto);
-            	System.out.println("Campos incompletos");
-			}   
+    		}   
             
             else
             {

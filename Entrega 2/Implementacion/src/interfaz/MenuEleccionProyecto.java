@@ -1,23 +1,14 @@
 package interfaz;
 
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import consola.ArchivoUsuarios;
 import modelo.CoordinadorProyecto;
 import modelo.Participante;
 
 
+@SuppressWarnings("serial")
 public class MenuEleccionProyecto extends Menu
 {
 	
@@ -42,6 +33,7 @@ public class MenuEleccionProyecto extends Menu
 	}
 	
 	
+	//PARA EL PRIMER PANEL
 	public void addProyectosParticipante()
 	{
 		String loginEnUso = ventana.getLoginEnUso();
@@ -78,6 +70,7 @@ public class MenuEleccionProyecto extends Menu
 	}
 	
 	
+	//PARA EL SEGUNDO PANEL
 	public void newProjectSettings(String nombre, String descripcion, int numTipos)
 	{
 		String fechaHoy = ventana.getFecha();
@@ -93,7 +86,7 @@ public class MenuEleccionProyecto extends Menu
 		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();			
 		coordinadorProyecto.crearProyecto(nombre, descripcion, fechaInicio,
 										  fechaFin, tiposActividades, autor);
-		coordinadorProyecto.guardarArchivo();
+		coordinadorProyecto.guardarArchivo(); //REVISAR
 		p1.disableFields();
 		p2.disableFields();
 		p2.successfulSave();

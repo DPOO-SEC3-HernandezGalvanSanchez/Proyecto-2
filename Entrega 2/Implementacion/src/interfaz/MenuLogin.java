@@ -1,21 +1,12 @@
 package interfaz;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import consola.ArchivoUsuarios;
 import modelo.Participante;
 
 
+@SuppressWarnings("serial")
 public class MenuLogin extends Menu
 {
 	private VentanaAplicacion ventana;	
@@ -28,7 +19,7 @@ public class MenuLogin extends Menu
 		super(1, "INGRESO A LA APLICACION");
 		this.ventana = padre;
 		ventana.enableBotonContinuar(false);
-		setLayout(new GridLayout(2, 1, 20, 20));
+		setLayout(new GridLayout(2, 1));
 		
 		p1 = new PanelLogin1(this);
 		add(p1);
@@ -38,6 +29,7 @@ public class MenuLogin extends Menu
 	}
 	
 	
+	//PARA EL PRIMER PANEL
 	public void ingresarLogin(String loginEnUso)
 	{
 		ArchivoUsuarios archivoUsuarios = ventana.getArchivoUsuarios();
@@ -60,6 +52,7 @@ public class MenuLogin extends Menu
 	}
 	
 	
+	//PARA EL SEGUNDO PANEL
 	public void ingresarLogin(String login, String nombre)
 	{
 		ArchivoUsuarios archivoUsuarios = ventana.getArchivoUsuarios();

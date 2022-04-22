@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
 
+@SuppressWarnings("serial")
 public class PanelLogin1 extends JPanel implements ActionListener
 {
 	private MenuLogin padre;
@@ -48,7 +49,7 @@ public class PanelLogin1 extends JPanel implements ActionListener
 		add(botonEntrar);
 		
 		textLabel = new JLabel("");
-		textLabel.setBounds(40, 160, 600, 20);
+		textLabel.setBounds(40, 180, 600, 20);
 		this.add(textLabel);
 
 	}

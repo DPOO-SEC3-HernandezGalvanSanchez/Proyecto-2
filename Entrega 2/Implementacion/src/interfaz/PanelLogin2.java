@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+
+@SuppressWarnings("serial")
 public class PanelLogin2 extends JPanel implements ActionListener
 {
 	private MenuLogin padre;
@@ -33,30 +35,30 @@ public class PanelLogin2 extends JPanel implements ActionListener
 		add(titulo);
 		
 		JLabel mensajeLogin = new JLabel("Ingrese su login:");
-		mensajeLogin.setBounds(145, 55, 100, 30);
+		mensajeLogin.setBounds(145, 65, 100, 30);
 		mensajeLogin.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensajeLogin);
 		
 		cuadroLogin = new JTextField();
-		cuadroLogin.setBounds(275, 59, 150, 23);
+		cuadroLogin.setBounds(275, 69, 150, 23);
 		add(cuadroLogin);
 		
 		JLabel mensajeNombre = new JLabel("Ingrese su nombre:");
-		mensajeNombre.setBounds(145, 85, 120, 30);
+		mensajeNombre.setBounds(145, 95, 120, 30);
 		mensajeNombre.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensajeNombre);
 		
 		cuadroNombre = new JTextField();
-		cuadroNombre.setBounds(275, 89, 150, 23);
+		cuadroNombre.setBounds(275, 99, 150, 23);
 		add(cuadroNombre);
 		
 		botonEntrar = new JButton("Registrar");
-		botonEntrar.setBounds(220, 127, 100, 25);
+		botonEntrar.setBounds(220, 137, 100, 25);
 		botonEntrar.addActionListener(this);
 		add(botonEntrar);
 		
 		textLabel = new JLabel("");
-		textLabel.setBounds(40, 170, 600, 23);
+		textLabel.setBounds(40, 180, 600, 23);
 		this.add(textLabel);
 
 	}

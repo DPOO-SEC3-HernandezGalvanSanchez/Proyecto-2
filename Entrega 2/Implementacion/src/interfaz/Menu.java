@@ -2,6 +2,7 @@ package interfaz;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Menu extends JPanel
 {
 	private int menuID;
