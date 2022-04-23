@@ -3,6 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import procesamiento.ArchivadorProyectos;
+
 public class CoordinadorProyecto
 {
 	//ATRIBUTOS

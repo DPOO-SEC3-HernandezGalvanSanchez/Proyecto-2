@@ -11,6 +11,7 @@ import java.util.HashMap;
 import modelo.Actividad;
 import modelo.CoordinadorProyecto;
 import modelo.Participante;
+import procesamiento.ArchivoUsuarios;
 
 
 public class Aplicacion

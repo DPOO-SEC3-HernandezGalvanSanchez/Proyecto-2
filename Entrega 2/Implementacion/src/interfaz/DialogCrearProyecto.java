@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -13,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class DialogCrearProyecto extends JDialog implements ActionListener
+public class DialogCrearProyecto extends JDialog implements ActionListener, KeyListener
 {
 	private MenuEleccionProyecto padre;
 	private String nombre;
@@ -44,6 +46,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener
 		settingsP.add(mensajeFechaI);
 		
 		cuadroFechaInicio = new JTextField();
+		cuadroFechaInicio.addKeyListener(this);
 		cuadroFechaInicio.setText(fechaHoy);
 		cuadroFechaInicio.setBounds(220, 39, 150, 23);
 		settingsP.add(cuadroFechaInicio);
@@ -55,7 +58,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener
 		settingsP.add(mensajeFechaF);
 		
 		cuadroFechaFinal = new HintTextField("Ej: 01/01/2023");
-		//cuadroFechaFinal.setText("31/12/2022"); //TEMPORAL
+		cuadroFechaFinal.addKeyListener(this);
 		cuadroFechaFinal.setBounds(220, 74, 150, 23);
 		settingsP.add(cuadroFechaFinal);
 		
@@ -97,6 +100,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener
 			settingsP.add(mensajeTipo);
 			
 			JTextField cuadroTipo = new HintTextField("Ej: Implementacion");
+			cuadroTipo.addKeyListener(this);
 			cuadroTipo.setBounds(220, y + 4, 150, 23);
 			settingsP.add(cuadroTipo);
 			
@@ -155,4 +159,47 @@ public class DialogCrearProyecto extends JDialog implements ActionListener
             }            
         }
     }
+	
+	@Override
+	public void keyPressed(KeyEvent e)
+	{	
+		if (e.getKeyCode()==KeyEvent.VK_ENTER)
+		{
+			String fechaInicio = cuadroFechaInicio.getText();
+            String fechaFinal = cuadroFechaFinal.getText();
+            boolean cuadrosTiposIncompletos = hayCuadroTipoIncompleto();
+            
+            if (fechaInicio.equals("") || fechaFinal.equals("") || cuadrosTiposIncompletos)
+			{
+				String texto = "Por favor complete todos los campos";
+				textLabel.setText(texto);
+    		}   
+            
+            else
+            {
+            	ArrayList<String> tiposActividades = new ArrayList<String>();
+            	
+            	for (JTextField cuadroTipo : cuadrosTipos)
+        		{
+        			String textoTipo = cuadroTipo.getText();
+        			tiposActividades.add(textoTipo);
+        			
+        		}
+            	
+            	padre.crearProyecto(nombre, descripcion, fechaInicio,
+            						fechaFinal, tiposActividades);
+            	this.dispose();
+            }
+		}
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e)
+	{	
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e)
+	{	
+	}
 }

@@ -4,7 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -14,7 +15,7 @@ import javax.swing.JTextField;
 
 
 @SuppressWarnings("serial")
-public class DialogAgregarParticipante extends JDialog implements ActionListener
+public class DialogAgregarParticipante extends JDialog implements ActionListener, KeyListener
 {
 	private MenuProyecto padre;
 	
@@ -39,6 +40,7 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 		settingsPart.add(mensajeLogin);
 		
 		cuadroLogin = new JTextField();
+		cuadroLogin.addKeyListener(this);
 		cuadroLogin.setBounds(220, 29, 150, 23);
 		settingsPart.add(cuadroLogin);
 		
@@ -49,7 +51,7 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 		settingsPart.add(mensajeNombre);
 		
 		cuadroNombre = new JTextField();
-		//cuadroNombre.setText("31/12/2022"); //TEMPORAL
+		cuadroNombre.addKeyListener(this);
 		cuadroNombre.setBounds(220, 64, 150, 23);
 		settingsPart.add(cuadroNombre);
 		
@@ -92,6 +94,38 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 			padre.agregarParticipante(login, nombre);
 			this.dispose();
 		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e)
+	{	
+		if (e.getKeyCode()==KeyEvent.VK_ENTER)
+		{
+			String login = cuadroLogin.getText();
+			String nombre = cuadroNombre.getText();
+			
+			if (login.equals("") || nombre.equals(""))
+			{
+				String texto = "Por favor complete todos los campos";
+				textLabel.setText(texto);
+			}
+			
+			else
+			{
+				padre.agregarParticipante(login, nombre);
+				this.dispose();
+			}
+		}
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e)
+	{	
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e)
+	{	
 	}
 	
 }

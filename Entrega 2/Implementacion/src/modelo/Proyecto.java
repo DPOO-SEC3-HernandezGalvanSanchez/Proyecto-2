@@ -79,8 +79,8 @@ public abstract class Proyecto
 	
 	public void agregarParticipante(Participante nuevoParticipante)
 	{
-		String nombre = nuevoParticipante.getNombre();
-		participantes.put(nombre, nuevoParticipante);
+		String login = nuevoParticipante.getLogin();
+		participantes.put(login, nuevoParticipante);
 	}
 	
 	

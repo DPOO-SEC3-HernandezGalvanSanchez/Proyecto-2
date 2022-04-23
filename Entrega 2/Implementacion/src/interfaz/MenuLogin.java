@@ -2,8 +2,8 @@ package interfaz;
 
 import java.awt.GridLayout;
 
-import consola.ArchivoUsuarios;
 import modelo.Participante;
+import procesamiento.ArchivoUsuarios;
 
 
 @SuppressWarnings("serial")

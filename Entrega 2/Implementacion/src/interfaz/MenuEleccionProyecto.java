@@ -3,9 +3,9 @@ package interfaz;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import consola.ArchivoUsuarios;
 import modelo.CoordinadorProyecto;
 import modelo.Participante;
+import procesamiento.ArchivoUsuarios;
 
 
 @SuppressWarnings("serial")
@@ -34,7 +34,7 @@ public class MenuEleccionProyecto extends Menu
 	
 	
 	//PARA EL PRIMER PANEL
-	public void addProyectosParticipante()
+	private void addProyectosParticipante()
 	{
 		String loginEnUso = ventana.getLoginEnUso();
 		ArchivoUsuarios archivoUsuarios = ventana.getArchivoUsuarios();
@@ -55,11 +55,10 @@ public class MenuEleccionProyecto extends Menu
 				String opcionProyecto = proyectosDelUsuario.get(index);
 				p1.addProyectoDesplegable(opcionProyecto);
 			}
-			
 		}
 	}
 	
-	
+	//PRIMER PANEL
 	public void setProyectoEnUso(String nombre)
 	{
 		p1.disableFields();
@@ -70,12 +69,11 @@ public class MenuEleccionProyecto extends Menu
 	}
 	
 	
-	//PARA EL SEGUNDO PANEL
+	//SEGUNDO PANEL
 	public void newProjectSettings(String nombre, String descripcion, int numTipos)
 	{
 		String fechaHoy = ventana.getFecha();
-		DialogCrearProyecto settings = new DialogCrearProyecto(nombre, descripcion, numTipos,
-															   fechaHoy, this);
+		new DialogCrearProyecto(nombre, descripcion, numTipos, fechaHoy, this);
 	}
 	
 	
@@ -87,6 +85,7 @@ public class MenuEleccionProyecto extends Menu
 		coordinadorProyecto.crearProyecto(nombre, descripcion, fechaInicio,
 										  fechaFin, tiposActividades, autor);
 		coordinadorProyecto.guardarArchivo(); //REVISAR
+		
 		p1.disableFields();
 		p2.disableFields();
 		p2.successfulSave();

@@ -42,7 +42,6 @@ public class PanelEleccion2 extends JPanel implements ActionListener
 		add(mensajeNombre);
 		
 		cuadroNombre = new JTextField();
-		//cuadroNombre.setText("ProyectoPrueba3"); //TEMPORAL
 		cuadroNombre.setBounds(295, 59, 150, 23);
 		add(cuadroNombre);
 		
@@ -52,7 +51,6 @@ public class PanelEleccion2 extends JPanel implements ActionListener
 		add(mensajeDescripcion);
 		
 		cuadroDescripcion = new JTextField();
-		//cuadroDescripcion.setText("descripcionP3"); //TEMPORAL
 		cuadroDescripcion.setBounds(295, 94, 150, 23);
 		add(cuadroDescripcion);
 		

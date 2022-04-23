@@ -22,6 +22,7 @@ public class PanelProyecto2 extends JPanel implements ActionListener
 	private JRadioButton botonOpc2;
 	private JRadioButton botonOpc3;
 	private JRadioButton botonOpc4;
+	private JRadioButton botonOpc5;
 	
 	
 	public PanelProyecto2(MenuProyecto padre)
@@ -40,33 +41,39 @@ public class PanelProyecto2 extends JPanel implements ActionListener
 		botonOpc1 = new JRadioButton("Añadir un participante");
 		botonOpc1.setFont(new Font("Bold", Font.PLAIN, 13));
 		botonOpc1.setSelected(true);
-		botonOpc1.setBounds(50, 50, 200, 30);
+		botonOpc1.setBounds(50, 40, 200, 30);
 		add(botonOpc1);
 		
 		botonOpc2 = new JRadioButton("Registrar una actividad");
 		botonOpc2.setFont(new Font("Bold", Font.PLAIN, 13));
-		botonOpc2.setBounds(50, 80, 200, 30);
+		botonOpc2.setBounds(50, 70, 200, 30);
 		add(botonOpc2);
 		
 		botonOpc3 = new JRadioButton("Modificar un registro");
 		botonOpc3.setFont(new Font("Bold", Font.PLAIN, 13));
-		botonOpc3.setBounds(50, 110, 200, 30);
+		botonOpc3.setBounds(50, 100, 200, 30);
 		add(botonOpc3);
 		
 		botonOpc4 = new JRadioButton("Generar un reporte");
 		botonOpc4.setFont(new Font("Bold", Font.PLAIN, 13));
-		botonOpc4.setBounds(50, 140, 200, 30);
+		botonOpc4.setBounds(50, 130, 200, 30);
 		add(botonOpc4);
+		
+		botonOpc5 = new JRadioButton("Ver calendario");
+		botonOpc5.setFont(new Font("Bold", Font.PLAIN, 13));
+		botonOpc5.setBounds(50, 160, 200, 30);
+		add(botonOpc5);
 		
 		ButtonGroup opciones = new ButtonGroup();
 		opciones.add(botonOpc1);
 		opciones.add(botonOpc2);
 		opciones.add(botonOpc3);
 		opciones.add(botonOpc4);
+		opciones.add(botonOpc5);
 		
 		//BOTON ACEPTAR
 		botonAceptar = new JButton("Aceptar");
-		botonAceptar.setBounds(220, 190, 100, 25);
+		botonAceptar.setBounds(220, 200, 100, 25);
 		botonAceptar.addActionListener(this);
 		add(botonAceptar);
 	}
@@ -83,7 +90,7 @@ public class PanelProyecto2 extends JPanel implements ActionListener
 			
 			else if (botonOpc2.isSelected())
 			{
-				System.out.println("Opcion 2");
+				padre.newActivitySettings();
 			}
 			
 			else if (botonOpc3.isSelected())

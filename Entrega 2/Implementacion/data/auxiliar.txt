@@ -1,2 +1,0 @@
-loginE2;NombreE2 ApellidoE2;ProyectoPrueba1;ProyectoPrueba2
-loginE1;NombreE1 ApellidoE1;ProyectoPrueba1

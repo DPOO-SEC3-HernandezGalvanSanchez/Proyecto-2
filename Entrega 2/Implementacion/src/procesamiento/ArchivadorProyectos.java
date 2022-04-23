@@ -1,4 +1,4 @@
-package modelo;
+package procesamiento;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,6 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+
+import modelo.Actividad;
+import modelo.GestorActividades;
+import modelo.Participante;
+import modelo.Proyecto;
 
 
 public class ArchivadorProyectos
@@ -220,9 +225,9 @@ public class ArchivadorProyectos
 			
 			while(j.hasNext())
 			{
-				String nombre = j.next();
-				Participante elParticipante = participantes.get(nombre);
-				String login = elParticipante.getLogin();
+				String login = j.next();
+				Participante elParticipante = participantes.get(login);
+				String nombre = elParticipante.getNombre();
 				lineaP += "," + login + ";" + nombre;
 			}
 			
@@ -262,7 +267,7 @@ public class ArchivadorProyectos
 			}
 		}
 		fw.close();
-		
+
 		
 		}
 		catch (IOException e)

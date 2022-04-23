@@ -15,9 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import consola.ArchivoUsuarios;
 import modelo.CoordinadorProyecto;
 import modelo.Participante;
+import procesamiento.ArchivoUsuarios;
 
 
 @SuppressWarnings("serial")
@@ -62,6 +62,16 @@ public class VentanaAplicacion extends JFrame implements ActionListener
 		setVisible(true);
 	}
 	
+	public void refresh()
+	{
+		String nombreProyecto = coordinadorProyecto.getNombreProyecto();
+		
+		coordinadorProyecto = new CoordinadorProyecto();
+    	archivoUsuarios = new ArchivoUsuarios();
+    	
+    	coordinadorProyecto.seleccionarProyecto(nombreProyecto);
+	}
+	
 	
 	//AUXILIARES
 	private void initPanelInferior()
@@ -77,7 +87,7 @@ public class VentanaAplicacion extends JFrame implements ActionListener
 		
 		botonAtras = new JButton("Atras");
 		botonAtras.addActionListener(this);
-		botonAtras.setPreferredSize(new Dimension(80, 20));
+		botonAtras.setPreferredSize(new Dimension(80, 27));
 		botonAtras.setVisible(false);
 		panelInferior.add(botonAtras, BorderLayout.WEST);		
 	}
@@ -111,7 +121,6 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             
             if (menuID.equals(1))
             {
-            	System.out.println("SIGUIENTE 1"); //TEMPORAL
             	botonAtras.setVisible(true);
             	menuActual.setVisible(false);
             	menuActual = new MenuEleccionProyecto(this);
@@ -120,7 +129,6 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             
             else if (menuID.equals(2))
             {
-            	System.out.println("SIGUIENTE 2"); //TEMPORAL
             	botonContinuar.setVisible(false);
             	menuActual.setVisible(false);
             	menuActual = new MenuProyecto(this);
@@ -134,7 +142,6 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             
             if (menuID.equals(2))
             {
-            	System.out.println("ATRAS 2");
             	botonAtras.setVisible(false);
             	menuActual.setVisible(false);
             	menuActual = new MenuLogin(this);
@@ -143,14 +150,12 @@ public class VentanaAplicacion extends JFrame implements ActionListener
             
             if (menuID.equals(3))
             {
-            	System.out.println("ATRAS 3");
+            	refresh();
             	botonContinuar.setVisible(true);
             	menuActual.setVisible(false);
             	menuActual = new MenuEleccionProyecto(this);
             	updateMenu();
-            	//POR REVISAR: coordinadorProyecto.refresh() ???
             }
-            
         }
     }
 	
