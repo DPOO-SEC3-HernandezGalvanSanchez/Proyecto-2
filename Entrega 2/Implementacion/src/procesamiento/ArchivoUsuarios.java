@@ -32,6 +32,14 @@ public class ArchivoUsuarios
 	
 	
 	// METODOS
+	public Participante newParticipante(String login, String nombre)
+	{
+		Participante pn = new Participante(login, nombre);
+		infoUsuarios.put(login, pn);
+		
+		return pn;
+	}
+	
 	public Participante getParticipante(String loginUsuario)
 	{				
 		return infoUsuarios.get(loginUsuario);

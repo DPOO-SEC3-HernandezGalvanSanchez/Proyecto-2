@@ -33,7 +33,7 @@ public class MenuEleccionProyecto extends Menu
 	}
 	
 	
-	//PARA EL PRIMER PANEL
+	//PRIMER PANEL
 	private void addProyectosParticipante()
 	{
 		String loginEnUso = ventana.getLoginEnUso();
@@ -58,7 +58,7 @@ public class MenuEleccionProyecto extends Menu
 		}
 	}
 	
-	//PRIMER PANEL
+	
 	public void setProyectoEnUso(String nombre)
 	{
 		p1.disableFields();

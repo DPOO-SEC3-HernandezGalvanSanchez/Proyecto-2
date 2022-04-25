@@ -102,6 +102,13 @@ public class PanelProyecto2 extends JPanel implements ActionListener
 			{
 				System.out.println("Opcion 4");
 			}
+			
+			else if (botonOpc5.isSelected())
+			{
+				System.out.println("Opcion 5");
+			}
+			
+			
 		}
 	}
 	

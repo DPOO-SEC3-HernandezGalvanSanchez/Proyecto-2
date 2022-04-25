@@ -63,7 +63,7 @@ public class MenuLogin extends Menu
 			p2.userNonExistent();
 			p1.disableFields();
 			p2.disableFields();
-			usuarioEnUso = new Participante(login, nombre);
+			usuarioEnUso = archivoUsuarios.newParticipante(login, nombre);
 			ventana.setUsuarioEnUso(usuarioEnUso);
 			ventana.setLoginEnUso(login);
 			ventana.enableBotonContinuar(true);				

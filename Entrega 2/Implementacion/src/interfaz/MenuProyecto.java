@@ -56,6 +56,7 @@ public class MenuProyecto extends Menu
 		new DialogAgregarParticipante(this);
 	}
 	
+	
 	public void agregarParticipante(String login, String nombre)
 	{
 		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
@@ -102,6 +103,7 @@ public class MenuProyecto extends Menu
 		//Mostrar cuadro de dialogo
 		settingsAct.setVisible(true);
 	}
+
 	
 	public void agregarActividad(String tipoActividad, String titulo, String descripcion,
 								 String horaInicio, String loginAutor)
