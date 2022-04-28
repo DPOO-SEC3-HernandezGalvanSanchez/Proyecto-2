@@ -78,7 +78,8 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 	}
 	
 	
-	public void actionPerformed(ActionEvent e)
+	//METODOS DEL LISTENER
+	private void continuar()
 	{
 		String login = cuadroLogin.getText();
 		String nombre = cuadroNombre.getText();
@@ -95,34 +96,33 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 			this.dispose();
 		}
 	}
+	
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		if (e.getSource()==botonAceptar)
+		{
+			continuar();
+		}
+	}
 
+	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{	
 		if (e.getKeyCode()==KeyEvent.VK_ENTER)
 		{
-			String login = cuadroLogin.getText();
-			String nombre = cuadroNombre.getText();
-			
-			if (login.equals("") || nombre.equals(""))
-			{
-				String texto = "Por favor complete todos los campos";
-				textLabel.setText(texto);
-			}
-			
-			else
-			{
-				padre.agregarParticipante(login, nombre);
-				this.dispose();
-			}
+			continuar();
 		}
 	}
+	
 	
 	@Override
 	public void keyTyped(KeyEvent e)
 	{	
 	}
 
+	
 	@Override
 	public void keyReleased(KeyEvent e)
 	{	

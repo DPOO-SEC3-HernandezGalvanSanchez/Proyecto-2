@@ -133,7 +133,7 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 	
 	
 	//METODOS DE LISTENER
-	public void actionPerformed(ActionEvent e)
+	private void continuar()
 	{
 		String tipo = desplegableT.getSelectedItem().toString();
 		String loginAutor = desplegableA.getSelectedItem().toString();
@@ -156,9 +156,23 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 		}
 	}
 	
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		if (e.getSource()==botonAceptar)
+		{
+			continuar();
+		}
+	}
+	
+	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{	
+		if (e.getKeyCode()==KeyEvent.VK_ENTER)
+		{
+			continuar();
+		}
 	}
 	
 	@Override

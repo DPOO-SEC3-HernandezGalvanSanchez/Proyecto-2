@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import modelo.Actividad;
 import modelo.CoordinadorProyecto;
 import modelo.Participante;
 import procesamiento.ArchivoUsuarios;
@@ -30,15 +31,16 @@ public class MenuProyecto extends Menu
 		String fechaInicio = coordinadorProyecto.getFechaInicio();
 		String fechaFin = coordinadorProyecto.getFechaFin();
 		HashMap<String, Participante> participantesProyecto = coordinadorProyecto.getParticipantes();
-		ArrayList<String> nombres = new ArrayList<String>(participantesProyecto.keySet());
+		ArrayList<String> logins = new ArrayList<String>(participantesProyecto.keySet());
 		
 		p1 = new PanelProyecto1(this, nombre, descripcion,
-				                fechaInicio, fechaFin, nombres);
+				                fechaInicio, fechaFin, logins);
 		add(p1);
 		
 		p2 = new PanelProyecto2(this);
 		add(p2);
 	}
+
 	
 	//PRIMER PANEL
 	public String getNombreParticipante(String login)
@@ -119,6 +121,110 @@ public class MenuProyecto extends Menu
 											   fecha, horaInicio, horaActual, autor);
 		coordinadorProyecto.guardarArchivo();
 	}
+
+
+	//MODIFICAR REGISTRO
+	public void elegirTituloRegistro()
+	{
+		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
+		HashMap<String, ArrayList<Actividad>> actividades = coordinadorProyecto.getActividades();
+		ArrayList<String> titulos = new ArrayList<String>(actividades.keySet());
+		
+		DialogElegirRegistro selectReg = new DialogElegirRegistro(this); 
+		
+		for (String titulo : titulos)
+		{
+			selectReg.addTituloDesplegable(titulo);
+		}
+		
+		selectReg.setVisible(true);
+	}
+	
+	
+	public void addRegistros(DialogElegirRegistro selectReg, String titulo)
+	{
+		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
+		HashMap<String, ArrayList<Actividad>> actividades = coordinadorProyecto.getActividades();
+		ArrayList<Actividad> registros = actividades.get(titulo);
+	
+		for (Actividad registro : registros)
+		{
+			String fechaAct = registro.getFecha();
+			System.out.println(fechaAct);
+			selectReg.addFechaDesplegable(fechaAct);
+		}
+	}
+	
+	
+	public void modificarRegistro(String titulo, int index)
+	{
+		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
+		HashMap<String, ArrayList<Actividad>> actividades = coordinadorProyecto.getActividades();
+		Actividad registro = actividades.get(titulo).get(index);
+		
+		String descripcion = registro.getDescripcion();
+		String autor = registro.getAutor().getNombre();
+		String horaInicio = registro.getHoraInicio();
+		String horaFin = registro.getHoraFin();
+		
+		//CREAR NUEVO DIALOGO
+	}
+	
+	
+	public void actualizarRegistro(String titulo, int index,
+			String fecha, String horaInicio, String horaFin)
+	{
+		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
+		coordinadorProyecto.modificarFechaActividad(titulo, index, fecha);
+		coordinadorProyecto.modificarHoraInicio(titulo, index, horaInicio);
+		coordinadorProyecto.modificarHoraFin(titulo, index, horaFin);
+	}
+	
+	
+	
+	//GENERAR REPORTE
+	public void elegirParticipante()
+	{
+		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
+		HashMap<String, Participante> participantesProyecto = coordinadorProyecto.getParticipantes();
+		ArrayList<String> logins = new ArrayList<String>(participantesProyecto.keySet());
+		
+		DialogElegirParticipante selectPart = new DialogElegirParticipante(this);
+		
+		for (String login : logins)
+		{
+			selectPart.addParticipanteDesplegable(login);
+		}
+		
+		selectPart.setVisible(true);
+	}
+	
+	
+	public void generarReporte(String login)
+	{
+		ArchivoUsuarios archivoUsuarios = ventana.getArchivoUsuarios();
+		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
+		
+		Participante participante = archivoUsuarios.getParticipante(login);
+		ArrayList<Actividad> actividadesMiembro = coordinadorProyecto.actividadesMiembro(login);
+		int total = coordinadorProyecto.tiempoTotal(actividadesMiembro);
+		HashMap<String, Double> promedios = coordinadorProyecto.tiempoPorActividad(actividadesMiembro);
+		
+		System.out.println("\nNombre: " + participante.getNombre());
+		System.out.println("TIEMPO TOTAL: " + total + " minutos\n");
+		
+		System.out.println("TIEMPO PROMEDIO POR TIPO DE ACTIVIDAD: ");
+		
+		for(String tipo: promedios.keySet())
+		{
+			double promedio = promedios.get(tipo);
+			System.out.println("- " + tipo + ": " + promedio + " minutos");
+		}
+		
+		System.out.println("\n\n");
+		
+	}
+
 
 
 }
