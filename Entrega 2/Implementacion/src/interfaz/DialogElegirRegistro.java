@@ -13,12 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class DialogElegirRegistro extends JDialog implements ActionListener
+public class DialogElegirRegistro extends JDialog
+				implements ActionListener, KeyListener
 {
 	private MenuProyecto padre;
 	private String tituloAct;
 	
 	private JPanel selectRegistro;
+	private JLabel mensajeR;
 	private JComboBox<String> desplegableT;
 	private JComboBox<String> desplegableR;
 	private JButton botonContinuar;
@@ -42,18 +44,21 @@ public class DialogElegirRegistro extends JDialog implements ActionListener
 		
 		desplegableT = new JComboBox<String>();
 		desplegableT.setBounds(290, y + 4, 170, 23);
+		desplegableT.addKeyListener(this);
 		selectRegistro.add(desplegableT);
 		y += 40;
 		
 		//Seleccion del registro segun su fecha
-		JLabel mensajeR = new JLabel("Seleccione la fecha del registro a modificar:");
+		mensajeR = new JLabel("Seleccione la fecha del registro a modificar:");
 		mensajeR.setBounds(20, y, 250, 30);
 		mensajeR.setFont(new Font("Bold", Font.PLAIN, 13));
+		mensajeR.setVisible(false);
 		selectRegistro.add(mensajeR);
 		
 		desplegableR = new JComboBox<String>();
 		desplegableR.setBounds(290, y + 4, 170, 23);
-		desplegableR.setEnabled(false);
+		desplegableR.addKeyListener(this);
+		desplegableR.setVisible(false);
 		selectRegistro.add(desplegableR);
 		y += 70;
 		
@@ -95,7 +100,22 @@ public class DialogElegirRegistro extends JDialog implements ActionListener
 	//METODOS DEL LISTENER
 	private void continuar()
 	{
+		tituloAct = desplegableT.getSelectedItem().toString();
+		padre.addRegistros(this, tituloAct);
 		
+		desplegableT.setEnabled(false);
+		desplegableR.setVisible(true);
+		mensajeR.setVisible(true);
+		botonContinuar.setVisible(false);
+		botonAceptar.setVisible(true);
+	}
+	
+	
+	private void aceptar()
+	{
+		int index = desplegableR.getSelectedIndex();
+		padre.modificarRegistro(tituloAct, index);
+		this.dispose();
 	}
 	
 	
@@ -103,23 +123,40 @@ public class DialogElegirRegistro extends JDialog implements ActionListener
 	{
 		if (e.getSource()==botonContinuar)
 		{
-			System.out.println("Continuar");
-			tituloAct = desplegableT.getSelectedItem().toString();
-			padre.addRegistros(this, tituloAct);
-			
-			desplegableT.setEnabled(false);
-			desplegableR.setEnabled(true);
-			botonContinuar.setVisible(false);
-			botonAceptar.setVisible(true);
+			continuar();
 		}
 		
 		else if (e.getSource()==botonAceptar)
 		{
-			System.out.println("Aceptar");
-			int index = desplegableR.getSelectedIndex();
-			padre.modificarRegistro(tituloAct, index);
-			//this.dispose();
+			aceptar();
 		}
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e)
+	{	
+		if (e.getKeyCode()==KeyEvent.VK_ENTER)
+		{
+			if (e.getComponent()==desplegableT)
+			{
+				continuar();
+			}
+			
+			else if (e.getComponent()==desplegableR)
+			{
+				aceptar();
+			}
+		}
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e)
+	{	
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e)
+	{	
 	}
 	
 	

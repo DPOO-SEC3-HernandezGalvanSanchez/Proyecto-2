@@ -150,7 +150,6 @@ public class MenuProyecto extends Menu
 		for (Actividad registro : registros)
 		{
 			String fechaAct = registro.getFecha();
-			System.out.println(fechaAct);
 			selectReg.addFechaDesplegable(fechaAct);
 		}
 	}
@@ -164,10 +163,12 @@ public class MenuProyecto extends Menu
 		
 		String descripcion = registro.getDescripcion();
 		String autor = registro.getAutor().getNombre();
+		String fecha = registro.getFecha();
 		String horaInicio = registro.getHoraInicio();
 		String horaFin = registro.getHoraFin();
 		
-		//CREAR NUEVO DIALOGO
+		DialogModificarRegistro settingsReg = new DialogModificarRegistro(this,
+									  titulo, index, fecha, horaInicio, horaFin);
 	}
 	
 	
@@ -178,6 +179,7 @@ public class MenuProyecto extends Menu
 		coordinadorProyecto.modificarFechaActividad(titulo, index, fecha);
 		coordinadorProyecto.modificarHoraInicio(titulo, index, horaInicio);
 		coordinadorProyecto.modificarHoraFin(titulo, index, horaFin);
+		coordinadorProyecto.guardarArchivo();
 	}
 	
 	
