@@ -38,7 +38,7 @@ public class PanelProyecto2 extends JPanel implements ActionListener
 		add(titulo);
 		
 		//OPCIONES
-		botonOpc1 = new JRadioButton("Añadir un participante");
+		botonOpc1 = new JRadioButton("Agregar un participante");
 		botonOpc1.setFont(new Font("Bold", Font.PLAIN, 13));
 		botonOpc1.setSelected(true);
 		botonOpc1.setBounds(50, 40, 200, 30);
