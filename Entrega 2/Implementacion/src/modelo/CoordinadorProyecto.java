@@ -35,12 +35,7 @@ public class CoordinadorProyecto
 		
 		proyectoEnUso = archivoProyectos.getProyecto(nombreProyecto);
 	}
-	
-	
-	public void guardarArchivo()
-	{
-		archivoProyectos.guardarArchivo();
-	}
+
 	
 	
 	//METODOS DEL PROYECTO
@@ -105,31 +100,15 @@ public class CoordinadorProyecto
 	}
 
 	
-	public void modificarFechaActividad(String titulo, int index,
-							   			String nuevaFecha)
+	public void actualizarActividad(String titulo, int index, String nuevaFecha,
+									String nuevaHoraInicio, String nuevaHoraFin)
 	{
-		proyectoEnUso.modificarFechaActividad(titulo, index,
-											  nuevaFecha);
+		proyectoEnUso.modificarFechaActividad(titulo, index, nuevaFecha);
+		proyectoEnUso.modificarHoraInicio(titulo, index, nuevaHoraInicio);
+		proyectoEnUso.modificarHoraFin(titulo, index, nuevaHoraFin);
 		archivoProyectos.guardarInfoProyecto(proyectoEnUso);
 	}
 	
-	
-	public void modificarHoraInicio(String titulo, int index,
-   									String nuevaHoraInicio)
-	{
-		proyectoEnUso.modificarHoraInicio(titulo, index,
-										  nuevaHoraInicio);
-		archivoProyectos.guardarInfoProyecto(proyectoEnUso);
-	}
-	
-	
-	public void modificarHoraFin(String titulo, int index,
-								 String nuevaHoraFin)
-	{
-		proyectoEnUso.modificarHoraFin(titulo, index,
-				  					   nuevaHoraFin);
-		archivoProyectos.guardarInfoProyecto(proyectoEnUso);
-	}
 
 	
 	// METODOS DEL REPORTE

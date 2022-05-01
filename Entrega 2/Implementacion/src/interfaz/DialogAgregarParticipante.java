@@ -18,11 +18,15 @@ import javax.swing.JTextField;
 public class DialogAgregarParticipante extends JDialog implements ActionListener, KeyListener
 {
 	private MenuProyecto padre;
+	private String login;
 	
 	private JPanel settingsPart;
+	private JLabel mensajeNombre;
 	private JTextField cuadroLogin;
 	private JTextField cuadroNombre;
+	private JButton botonContinuar;
 	private JButton botonAceptar;
+	private JLabel textAux;
 	private JLabel textLabel;
 	
 	
@@ -45,20 +49,35 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 		settingsPart.add(cuadroLogin);
 		
 		//Nombre
-		JLabel mensajeNombre = new JLabel("Ingrese el nombre:");
+		mensajeNombre = new JLabel("Ingrese el nombre:");
 		mensajeNombre.setBounds(20, 60, 200, 30);
 		mensajeNombre.setFont(new Font("Bold", Font.PLAIN, 13));
+		mensajeNombre.setVisible(false);
 		settingsPart.add(mensajeNombre);
 		
 		cuadroNombre = new JTextField();
 		cuadroNombre.addKeyListener(this);
 		cuadroNombre.setBounds(220, 64, 150, 23);
+		cuadroNombre.setVisible(false);
 		settingsPart.add(cuadroNombre);
+		
+		//Boton de continuar
+		botonContinuar = new JButton("Continuar");
+		botonContinuar.setBounds(147, 110, 100, 25);
+		botonContinuar.addActionListener(this);
+		add(botonContinuar);
+		
+		//Mensaje auxiliar
+		textAux = new JLabel("Puede ingresar un login no registrado en el sistema");
+		textAux.setBounds(20, 65, 600, 23);
+		textAux.setForeground(new Color(105, 105, 105));
+		this.add(textAux);
 		
 		//Boton de aceptar
 		botonAceptar = new JButton("Aceptar");
 		botonAceptar.setBounds(147, 110, 100, 25);
 		botonAceptar.addActionListener(this);
+		botonAceptar.setVisible(false);
 		add(botonAceptar);
 		
 		//Mensaje de advertencia
@@ -81,12 +100,47 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 	//METODOS DEL LISTENER
 	private void continuar()
 	{
-		String login = cuadroLogin.getText();
+		login = cuadroLogin.getText();
+		
+		if (login.equals(""))
+		{
+			String texto = "Por favor complete el campo";
+			textLabel.setText(texto);
+		}
+		
+		else
+		{
+			boolean registrado = padre.loginRegistrado(login);
+			
+			if (registrado)
+			{
+				padre.agregarParticipante(login);
+				this.dispose();
+				System.out.println("Está registrado");
+			}
+			
+			else
+			{
+				cuadroLogin.setEnabled(false);
+				textAux.setVisible(false);
+				mensajeNombre.setVisible(true);
+				cuadroNombre.setVisible(true);
+				botonContinuar.setVisible(false);
+				botonAceptar.setVisible(true);
+				textLabel.setText("");
+				System.out.println("No está registrado");
+			}
+		}
+	}
+	
+	
+	private void aceptar()
+	{
 		String nombre = cuadroNombre.getText();
 		
-		if (login.equals("") || nombre.equals(""))
+		if (nombre.equals(""))
 		{
-			String texto = "Por favor complete todos los campos";
+			String texto = "Por favor complete el campo";
 			textLabel.setText(texto);
 		}
 		
@@ -100,9 +154,14 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getSource()==botonAceptar)
+		if (e.getSource()==botonContinuar)
 		{
 			continuar();
+		}
+		
+		else if (e.getSource()==botonAceptar)
+		{
+			aceptar();
 		}
 	}
 
@@ -112,7 +171,15 @@ public class DialogAgregarParticipante extends JDialog implements ActionListener
 	{	
 		if (e.getKeyCode()==KeyEvent.VK_ENTER)
 		{
-			continuar();
+			if (e.getComponent()==cuadroLogin)
+			{
+				continuar();
+			}
+			
+			else if (e.getComponent()==cuadroNombre)
+			{
+				aceptar();
+			}
 		}
 	}
 	

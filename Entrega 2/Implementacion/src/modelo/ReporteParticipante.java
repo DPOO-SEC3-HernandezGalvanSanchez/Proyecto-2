@@ -61,8 +61,9 @@ public class ReporteParticipante
 			if (cantidadRegistros != 0)
 			{
 				promedio = acumulado / cantidadRegistros;
-				promedios.put(tipo, promedio);
 			}
+			
+			promedios.put(tipo, promedio);
 		}
 		return promedios;
 	}

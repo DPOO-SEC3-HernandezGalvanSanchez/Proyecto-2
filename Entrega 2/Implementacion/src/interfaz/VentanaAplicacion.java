@@ -55,7 +55,7 @@ public class VentanaAplicacion extends JFrame implements ActionListener
 		updateMenu();
 		
 		setSize(550, 600);
-		setTitle("Proyecto 2");
+		setTitle("Proyecto 2 - DPOO");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
