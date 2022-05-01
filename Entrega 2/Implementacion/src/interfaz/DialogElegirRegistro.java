@@ -39,25 +39,25 @@ public class DialogElegirRegistro extends JDialog
 		
 		//Seleccion del titulo
 		JLabel mensajeT = new JLabel("Seleccione el titulo de la actividad:");
-		mensajeT.setBounds(20, y, 210, 30);
+		mensajeT.setBounds(20, y, 260, 30);
 		mensajeT.setFont(new Font("Bold", Font.PLAIN, 13));
 		selectRegistro.add(mensajeT);
 		
 		desplegableT = new JComboBox<String>();
-		desplegableT.setBounds(290, y + 4, 170, 23);
+		desplegableT.setBounds(290, y + 4, 190, 23);
 		desplegableT.addKeyListener(this);
 		selectRegistro.add(desplegableT);
 		y += 40;
 		
 		//Seleccion del registro segun su fecha
-		mensajeR = new JLabel("Seleccione la fecha del registro a modificar:");
-		mensajeR.setBounds(20, y, 250, 30);
+		mensajeR = new JLabel("Seleccione el registro a modificar:");
+		mensajeR.setBounds(20, y, 260, 30);
 		mensajeR.setFont(new Font("Bold", Font.PLAIN, 13));
 		mensajeR.setVisible(false);
 		selectRegistro.add(mensajeR);
 		
 		desplegableR = new JComboBox<String>();
-		desplegableR.setBounds(290, y + 4, 170, 23);
+		desplegableR.setBounds(290, y + 4, 190, 23);
 		desplegableR.addKeyListener(this);
 		desplegableR.setVisible(false);
 		selectRegistro.add(desplegableR);
@@ -65,13 +65,13 @@ public class DialogElegirRegistro extends JDialog
 		
 		//Boton de continuar
 		botonContinuar = new JButton("Continuar");
-		botonContinuar.setBounds(197, y, 100, 25);
+		botonContinuar.setBounds(212, y, 100, 25);
 		botonContinuar.addActionListener(this);
 		add(botonContinuar);
 		
 		//Boton de aceptar
 		botonAceptar = new JButton("Aceptar");
-		botonAceptar.setBounds(197, y, 100, 25);
+		botonAceptar.setBounds(212, y, 100, 25);
 		botonAceptar.addActionListener(this);
 		botonAceptar.setVisible(false);
 		add(botonAceptar);
@@ -80,7 +80,7 @@ public class DialogElegirRegistro extends JDialog
 		add(selectRegistro);
 		setTitle("Seleccionar registro");
 		setModal(true);
-		setSize(500, 220);
+		setSize(530, 220);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}
@@ -95,7 +95,7 @@ public class DialogElegirRegistro extends JDialog
 	public void addFechaDesplegable(String fecha, 
 			String horaInicio, String horaFin)
 	{
-		String t = fecha + "     " + horaInicio + "-" + horaFin;
+		String t = fecha + "    " + horaInicio + "-" + horaFin;
 		desplegableR.addItem(t);
 	}
 	

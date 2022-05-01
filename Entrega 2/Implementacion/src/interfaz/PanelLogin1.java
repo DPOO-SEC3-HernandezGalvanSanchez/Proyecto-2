@@ -34,12 +34,12 @@ public class PanelLogin1 extends JPanel implements ActionListener
 		add(titulo);
 		
 		JLabel mensaje = new JLabel("Ingrese su login:");
-		mensaje.setBounds(175, 65, 100, 30);
+		mensaje.setBounds(170, 65, 150, 30);
 		mensaje.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensaje);
 		
 		cuadroTexto = new JTextField();
-		cuadroTexto.setBounds(275, 69, 100, 23);
+		cuadroTexto.setBounds(280, 69, 100, 23);
 		add(cuadroTexto);
 		
 		botonEntrar = new JButton("Entrar");

@@ -37,31 +37,31 @@ public class PanelEleccion2 extends JPanel implements ActionListener
 		add(titulo);
 		
 		JLabel mensajeNombre = new JLabel("Ingrese el nombre:");
-		mensajeNombre.setBounds(85, 55, 150, 30);
+		mensajeNombre.setBounds(80, 55, 150, 30);
 		mensajeNombre.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensajeNombre);
 		
 		cuadroNombre = new JTextField();
-		cuadroNombre.setBounds(295, 59, 150, 23);
+		cuadroNombre.setBounds(300, 59, 150, 23);
 		add(cuadroNombre);
 		
 		JLabel mensajeDescripcion = new JLabel("Ingrese una corta descripcion:");
-		mensajeDescripcion.setBounds(85, 90, 200, 30);
+		mensajeDescripcion.setBounds(80, 90, 200, 30);
 		mensajeDescripcion.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensajeDescripcion);
 		
 		cuadroDescripcion = new JTextField();
-		cuadroDescripcion.setBounds(295, 94, 150, 23);
+		cuadroDescripcion.setBounds(300, 94, 150, 23);
 		add(cuadroDescripcion);
 		
 		JLabel mensajeNumTipos = new JLabel("Ingrese el # de tipos de actividad:");
-		mensajeNumTipos.setBounds(85, 125, 200, 30);
+		mensajeNumTipos.setBounds(80, 125, 250, 30);
 		mensajeNumTipos.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensajeNumTipos);
 		
 		Integer[] opcionesTipos = {1,2,3,4,5};
 		cuadroNumTipos = new JComboBox<Integer>(opcionesTipos);
-		cuadroNumTipos.setBounds(295, 129, 150, 23);
+		cuadroNumTipos.setBounds(300, 129, 150, 23);
 		add(cuadroNumTipos);
 		
 		botonCrear = new JButton("Crear");

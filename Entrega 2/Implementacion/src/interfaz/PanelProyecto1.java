@@ -61,7 +61,7 @@ public class PanelProyecto1 extends JPanel
 		add(mensajeParticipantes);
 		
 		setListaParticipantes(participantes);
-	    scrollPane.setBounds(130, y+5, 300, 80);
+	    scrollPane.setBounds(140, y+5, 300, 80);
 	    add(scrollPane);
 	}
 	

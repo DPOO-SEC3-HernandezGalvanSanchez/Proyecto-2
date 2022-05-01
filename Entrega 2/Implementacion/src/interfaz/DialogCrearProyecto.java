@@ -48,7 +48,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener, KeyL
 		cuadroFechaInicio = new JTextField();
 		cuadroFechaInicio.addKeyListener(this);
 		cuadroFechaInicio.setText(fechaHoy);
-		cuadroFechaInicio.setBounds(220, 39, 150, 23);
+		cuadroFechaInicio.setBounds(230, 39, 150, 23);
 		settingsP.add(cuadroFechaInicio);
 		
 		//Fecha final
@@ -59,7 +59,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener, KeyL
 		
 		cuadroFechaFinal = new HintTextField("Ej: 01/01/2023");
 		cuadroFechaFinal.addKeyListener(this);
-		cuadroFechaFinal.setBounds(220, 74, 150, 23);
+		cuadroFechaFinal.setBounds(230, 74, 150, 23);
 		settingsP.add(cuadroFechaFinal);
 		
 		//Tipos de actividades
@@ -67,7 +67,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener, KeyL
 		
 		//Boton de aceptar
 		botonAceptar = new JButton("Aceptar");
-		botonAceptar.setBounds(147, 300, 100, 25);
+		botonAceptar.setBounds(152, 300, 100, 25);
 		botonAceptar.addActionListener(this);
 		add(botonAceptar);
 		
@@ -81,7 +81,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener, KeyL
 		add(settingsP);
 		setTitle("Configuracion del proyecto");
 		setModal(true);
-		setSize(400, 400);
+		setSize(420, 400);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
@@ -101,7 +101,7 @@ public class DialogCrearProyecto extends JDialog implements ActionListener, KeyL
 			
 			JTextField cuadroTipo = new HintTextField("Ej: Implementacion");
 			cuadroTipo.addKeyListener(this);
-			cuadroTipo.setBounds(220, y + 4, 150, 23);
+			cuadroTipo.setBounds(230, y + 4, 150, 23);
 			settingsP.add(cuadroTipo);
 			
 			cuadrosTipos.add(cuadroTipo);

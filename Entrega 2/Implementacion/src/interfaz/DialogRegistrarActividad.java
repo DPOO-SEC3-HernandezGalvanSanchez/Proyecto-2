@@ -38,6 +38,7 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 		settingsAct.setLayout(null);
 		
 		int y = 25;
+		final int x = 220;
 		final int spacing = 40;
 		
 		//Tipo
@@ -48,7 +49,7 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 		
 		desplegableT = new JComboBox<String>();
 		desplegableT.addKeyListener(this);
-		desplegableT.setBounds(200, y+4, 170, 23);
+		desplegableT.setBounds(x, y+4, 170, 23);
 		settingsAct.add(desplegableT);
 		y += spacing;
 		
@@ -60,7 +61,7 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 		
 		desplegableA = new JComboBox<String>();
 		desplegableA.addKeyListener(this);
-		desplegableA.setBounds(200, y+4, 170, 23);
+		desplegableA.setBounds(x, y+4, 170, 23);
 		settingsAct.add(desplegableA);
 		y += spacing;
 		
@@ -72,7 +73,7 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 		
 		cuadroTitulo = new JTextField();
 		cuadroTitulo.addKeyListener(this);
-		cuadroTitulo.setBounds(200, y+4, 170, 23);
+		cuadroTitulo.setBounds(x, y+4, 170, 23);
 		settingsAct.add(cuadroTitulo);
 		y += spacing;
 		
@@ -84,7 +85,7 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 		
 		cuadroDescripcion = new JTextField();
 		cuadroDescripcion.addKeyListener(this);
-		cuadroDescripcion.setBounds(200, y+4, 170, 23);
+		cuadroDescripcion.setBounds(x, y+4, 170, 23);
 		settingsAct.add(cuadroDescripcion);
 		y += spacing;
 		
@@ -96,12 +97,12 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 		
 		cuadroHoraI = new HintTextField("Ej: 14:00");
 		cuadroHoraI.addKeyListener(this);
-		cuadroHoraI.setBounds(200, y+4, 55, 23);
+		cuadroHoraI.setBounds(x, y+4, 80, 23);
 		settingsAct.add(cuadroHoraI);
 		
 		//Boton de aceptar
 		botonAceptar = new JButton("Aceptar");
-		botonAceptar.setBounds(147, y+50, 100, 25);
+		botonAceptar.setBounds(167, y+50, 100, 25);
 		botonAceptar.addActionListener(this);
 		add(botonAceptar);
 		
@@ -115,7 +116,7 @@ public class DialogRegistrarActividad extends JDialog implements ActionListener,
 		add(settingsAct);
 		setTitle("Datos de la actividad");
 		setModal(true);
-		setSize(400, y+160);
+		setSize(440, y+160);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}

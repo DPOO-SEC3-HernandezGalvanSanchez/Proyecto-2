@@ -33,18 +33,18 @@ public class DialogElegirParticipante extends JDialog
 		
 		//Desplegable
 		JLabel mensaje = new JLabel("Seleccione el participante:");
-		mensaje.setBounds(20, 25, 150, 30);
+		mensaje.setBounds(20, 25, 180, 30);
 		mensaje.setFont(new Font("Bold", Font.PLAIN, 13));
 		selectParticipante.add(mensaje);
 		
 		desplegable = new JComboBox<String>();
 		desplegable.addKeyListener(this);
-		desplegable.setBounds(200, 29, 170, 23);
+		desplegable.setBounds(220, 29, 170, 23);
 		selectParticipante.add(desplegable);
 		
 		//Boton de aceptar
 		botonAceptar = new JButton("Aceptar");
-		botonAceptar.setBounds(147, 75, 100, 25);
+		botonAceptar.setBounds(167, 75, 100, 25);
 		botonAceptar.addActionListener(this);
 		add(botonAceptar);
 		
@@ -52,7 +52,7 @@ public class DialogElegirParticipante extends JDialog
 		add(selectParticipante);
 		setTitle("Seleccionar participante");
 		setModal(true);
-		setSize(400, 160);
+		setSize(440, 160);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}

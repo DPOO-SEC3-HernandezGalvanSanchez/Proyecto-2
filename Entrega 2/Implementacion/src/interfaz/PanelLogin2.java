@@ -35,21 +35,21 @@ public class PanelLogin2 extends JPanel implements ActionListener
 		add(titulo);
 		
 		JLabel mensajeLogin = new JLabel("Ingrese su login:");
-		mensajeLogin.setBounds(145, 65, 100, 30);
+		mensajeLogin.setBounds(140, 65, 150, 30);
 		mensajeLogin.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensajeLogin);
 		
 		cuadroLogin = new JTextField();
-		cuadroLogin.setBounds(275, 69, 150, 23);
+		cuadroLogin.setBounds(280, 69, 150, 23);
 		add(cuadroLogin);
 		
 		JLabel mensajeNombre = new JLabel("Ingrese su nombre:");
-		mensajeNombre.setBounds(145, 95, 120, 30);
+		mensajeNombre.setBounds(140, 95, 150, 30);
 		mensajeNombre.setFont(new Font("Bold", Font.PLAIN, 13));
 		add(mensajeNombre);
 		
 		cuadroNombre = new JTextField();
-		cuadroNombre.setBounds(275, 99, 150, 23);
+		cuadroNombre.setBounds(280, 99, 150, 23);
 		add(cuadroNombre);
 		
 		botonEntrar = new JButton("Registrar");
