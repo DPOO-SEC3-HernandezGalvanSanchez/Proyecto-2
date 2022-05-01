@@ -67,9 +67,9 @@ public class DialogElegirParticipante extends JDialog
 	//METODOS DEL LISTENER
 	private void continuar()
 	{
+		this.dispose();
 		String login = desplegable.getSelectedItem().toString();
 		padre.generarReporte(login);
-		this.dispose();
 	}
 	
 	

@@ -84,7 +84,6 @@ public class MenuEleccionProyecto extends Menu
 		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();			
 		coordinadorProyecto.crearProyecto(nombre, descripcion, fechaInicio,
 										  fechaFin, tiposActividades, autor);
-		coordinadorProyecto.guardarArchivo(); //REVISAR
 		
 		p1.disableFields();
 		p2.disableFields();

@@ -59,11 +59,43 @@ public class MenuProyecto extends Menu
 	}
 	
 	
+	public boolean loginRegistrado(String login)
+	{
+		boolean ans = true;
+		
+		ArchivoUsuarios archivoUsuarios = ventana.getArchivoUsuarios();
+		Participante usuarioEnUso = archivoUsuarios.getParticipante(login);
+		
+		if (usuarioEnUso == null)
+		{
+			ans = false;				
+		}
+		
+		return ans;
+	}
+	
+	
+	public void agregarParticipante(String login)
+	{
+		ArchivoUsuarios archivoUsuarios = ventana.getArchivoUsuarios();
+		Participante usuarioEnUso = archivoUsuarios.getParticipante(login);
+		String nombre = usuarioEnUso.getNombre();
+		
+		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
+		coordinadorProyecto.agregarParticipante(new Participante(login, nombre));
+		ventana.refresh();
+		
+		HashMap<String, Participante> participantesProyecto = coordinadorProyecto.getParticipantes();
+		ArrayList<String> nombres = new ArrayList<String>(participantesProyecto.keySet());
+		
+		p1.setListaParticipantes(nombres);
+	}
+	
+	
 	public void agregarParticipante(String login, String nombre)
 	{
 		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
 		coordinadorProyecto.agregarParticipante(new Participante(login, nombre));
-		coordinadorProyecto.guardarArchivo(); //REVISAR
 		ventana.refresh(); //REVISAR
 		
 		HashMap<String, Participante> participantesProyecto = coordinadorProyecto.getParticipantes();
@@ -119,7 +151,6 @@ public class MenuProyecto extends Menu
 		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
 		coordinadorProyecto.registrarActividad(tipoActividad, titulo, descripcion,
 											   fecha, horaInicio, horaActual, autor);
-		coordinadorProyecto.guardarArchivo();
 	}
 
 
@@ -150,7 +181,9 @@ public class MenuProyecto extends Menu
 		for (Actividad registro : registros)
 		{
 			String fechaAct = registro.getFecha();
-			selectReg.addFechaDesplegable(fechaAct);
+			String horaInicio = registro.getHoraInicio();
+			String horaFin = registro.getHoraFin();
+			selectReg.addFechaDesplegable(fechaAct, horaInicio, horaFin);
 		}
 	}
 	
@@ -161,14 +194,11 @@ public class MenuProyecto extends Menu
 		HashMap<String, ArrayList<Actividad>> actividades = coordinadorProyecto.getActividades();
 		Actividad registro = actividades.get(titulo).get(index);
 		
-		String descripcion = registro.getDescripcion();
-		String autor = registro.getAutor().getNombre();
 		String fecha = registro.getFecha();
 		String horaInicio = registro.getHoraInicio();
 		String horaFin = registro.getHoraFin();
 		
-		DialogModificarRegistro settingsReg = new DialogModificarRegistro(this,
-									  titulo, index, fecha, horaInicio, horaFin);
+		new DialogModificarRegistro(this, titulo, index, fecha, horaInicio, horaFin);
 	}
 	
 	
@@ -176,10 +206,8 @@ public class MenuProyecto extends Menu
 			String fecha, String horaInicio, String horaFin)
 	{
 		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
-		coordinadorProyecto.modificarFechaActividad(titulo, index, fecha);
-		coordinadorProyecto.modificarHoraInicio(titulo, index, horaInicio);
-		coordinadorProyecto.modificarHoraFin(titulo, index, horaFin);
-		coordinadorProyecto.guardarArchivo();
+		coordinadorProyecto.actualizarActividad(titulo, index, fecha,
+												horaInicio, horaFin);
 	}
 	
 	
@@ -209,22 +237,11 @@ public class MenuProyecto extends Menu
 		
 		Participante participante = archivoUsuarios.getParticipante(login);
 		ArrayList<Actividad> actividadesMiembro = coordinadorProyecto.actividadesMiembro(login);
-		int total = coordinadorProyecto.tiempoTotal(actividadesMiembro);
+		int tiempoTotal = coordinadorProyecto.tiempoTotal(actividadesMiembro);
 		HashMap<String, Double> promedios = coordinadorProyecto.tiempoPorActividad(actividadesMiembro);
 		
-		System.out.println("\nNombre: " + participante.getNombre());
-		System.out.println("TIEMPO TOTAL: " + total + " minutos\n");
 		
-		System.out.println("TIEMPO PROMEDIO POR TIPO DE ACTIVIDAD: ");
-		
-		for(String tipo: promedios.keySet())
-		{
-			double promedio = promedios.get(tipo);
-			System.out.println("- " + tipo + ": " + promedio + " minutos");
-		}
-		
-		System.out.println("\n\n");
-		
+		new DialogReporte(participante, actividadesMiembro, tiempoTotal, promedios);		
 	}
 
 

@@ -12,6 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 @SuppressWarnings("serial")
 public class DialogElegirRegistro extends JDialog
 				implements ActionListener, KeyListener
@@ -91,9 +92,11 @@ public class DialogElegirRegistro extends JDialog
 	}
 	
 	
-	public void addFechaDesplegable(String fecha)
+	public void addFechaDesplegable(String fecha, 
+			String horaInicio, String horaFin)
 	{
-		desplegableR.addItem(fecha);
+		String t = fecha + "     " + horaInicio + "-" + horaFin;
+		desplegableR.addItem(t);
 	}
 	
 	
@@ -113,9 +116,9 @@ public class DialogElegirRegistro extends JDialog
 	
 	private void aceptar()
 	{
-		int index = desplegableR.getSelectedIndex();
-		padre.modificarRegistro(tituloAct, index);
 		this.dispose();
+		int index = desplegableR.getSelectedIndex();
+		padre.modificarRegistro(tituloAct, index);	
 	}
 	
 	

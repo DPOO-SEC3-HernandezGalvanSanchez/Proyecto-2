@@ -181,10 +181,11 @@ public class ArchivadorProyectos
 		
 		String nombreProyecto = proyecto.getNombre();
 		catalogoProyectos.put(nombreProyecto, proyecto);
+		guardarArchivo();
 	}
 	
 	
-	public void guardarArchivo() 
+	private void guardarArchivo() 
 	{
 		/*
 		 * Guarda la informacion del catalogo al archivo
