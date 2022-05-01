@@ -3,6 +3,7 @@ package interfaz;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -106,6 +107,12 @@ public class PanelProyecto2 extends JPanel implements ActionListener
 			else if (botonOpc5.isSelected())
 			{
 				System.out.println("Opcion 5");
+				try {
+					padre.generarCalendario();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 			

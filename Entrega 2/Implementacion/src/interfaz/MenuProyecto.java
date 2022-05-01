@@ -1,8 +1,10 @@
 package interfaz;
 
 import java.awt.GridLayout;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Collection;
 
 import modelo.Actividad;
 import modelo.CoordinadorProyecto;
@@ -244,6 +246,33 @@ public class MenuProyecto extends Menu
 		new DialogReporte(participante, actividadesMiembro, tiempoTotal, promedios);		
 	}
 
+	
+	// GENERAR CALENDARIO
+	public void generarCalendario() throws ParseException
+	{
+		CoordinadorProyecto coordinadorProyecto = ventana.getCoordinadorProyecto();
+		HashMap<String, ArrayList<Actividad>> Actividades = coordinadorProyecto.getActividades();
+		String fechaInicio = coordinadorProyecto.getFechaInicio();
+		Collection<ArrayList<Actividad>> values = Actividades.values();
+		HashMap<String, Integer> fechas = new HashMap<String, Integer>();
+		for (ArrayList<Actividad> list : values)
+		{
+			for (int i = 0; i <list.size(); i++)
+			{
+				Actividad Act = list.get(i);
+				String fecha = Act.getFecha();
+				if (fechas.containsKey(fecha))
+				{
+					fechas.put(fecha,  Integer.valueOf(fechas.get(fecha).intValue()+1));
+				}
+				else
+				{
+					fechas.put(fecha, Integer.valueOf(1));
+				}
+			}
+		}
+		new DialogCalendario(fechas, fechaInicio);
+	}
 
 
 }
